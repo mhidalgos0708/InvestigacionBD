@@ -1,0 +1,17 @@
+.fa-plus-circle {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.imagepicker {
+    display: none;
+    visibility: none;
+}
+
+.avatar {
+    width: 100px;
+}
+
+.small-avatar {
+    width: 50px;
+}
