@@ -4,8 +4,6 @@ const router = express.Router();
 const User = require('../models/User');
 const passport = require('passport');
 
-const {session,pool} = require('../database');
-
 const { isAuthenticated } = require('../helpers/auth');
 
 router.get('/users/signin', (req, res) => {
@@ -45,19 +43,6 @@ router.post('/users/signup', async (req, res) => {
         const newUser = new User({username, password, name, dateofbirth, avatar});
         newUser.password = await newUser.encryptPassword(password);
         await newUser.save();
-        try {
-            const result = await session.run(
-              'CREATE (n:User {name:$nameparam, username:$usernameparam,dateofbirth:$dateofbirthparam}) Return n',
-              {nameparam:name,usernameparam:username,dateofbirthparam:dateofbirth}
-            )
-          
-            const singleRecord = result.records[0]
-            const node = singleRecord.get(0)
-          
-            console.log(node.properties.name)
-          } finally {
-          }
-          
         req.flash('success_msg', 'Your account has been successfully created');
         res.redirect('/users/signin');
     }
