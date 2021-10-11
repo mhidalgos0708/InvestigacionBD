@@ -1,0 +1,103 @@
+<!-- Page Wrapper -->
+<div id="wrapper" class="wrapper">
+
+    {{> sidebar}}
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            {{> topbar}}
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                 <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">{{course.name}}</h1>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row">
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="h5 mb-0 text-gray-800">Assigned Evaluations</div>   
+                                </div>
+                                <div class="form-group">
+                                    <a href="/students/assignments/{{course.code}}" class="card-link">Complete an evaluation</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="h5 mb-0 text-gray-800">Completed Evaluations</div>   
+                                </div>
+                                <div class="form-group">
+                                    <a href="/students/scores/{{user.username}}/{{course.code}}" class="card-link">Check your scores</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="h5 mb-0 text-gray-800">Course Material</div>   
+                                </div>
+                                <div class="form-group">
+                                    <a href="/students/seeTopics/{{course.code}}" class="card-link">View Material</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="h5 mb-0 text-gray-800">Students</div>   
+                                </div>
+                                <div class="form-group">
+                                    <a href="/students/course-members/{{course.code}}" class="card-link">List of course members</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="h5 mb-0 text-gray-800">Contact Teacher</div>   
+                                </div>
+                                <div class="form-group">
+                                    <a href="/chat/chat/{{course.teacher}}/{{user.username}}" class="card-link">Send message</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        {{> footer}}
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->

@@ -1,0 +1,138 @@
+<div id="wrapper" class="wrapper">
+    <!-- Sidebar -->
+    {{> sidebar}}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            {{> topbar}}
+
+            <div class="container-fluid">
+                
+                <h1 class="h3 mb-3">Friends</h1>
+                <div class="row">
+                
+                    <div class="col-xl-8">
+                        <div class="card">
+                            <div class="card-header pb-0">
+                                <div class="card-actions float-right">
+                                </div>
+                                <h5 class="card-title mb-0">Add Friends</h5>
+                            </div>
+                            <div id="content-wrapper" class="d-flex flex-column">
+                                <!-- Main Content -->
+                                <div id="content">
+                                    <!-- Topbar -->
+                                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                                        <!-- Topbar Search -->
+                                        <!--<form
+                                            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                                            action="/listFriends/seeFriends" method="POST"> -->
+                                        <form
+                                            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                                            action="/listFriends/seeFriends/addFriend/{{user.username}}" method="POST">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control bg-light border-0 small" placeholder="Type the username"
+                                                    aria-label="Search" aria-describedby="basic-addon2" name = "usernameParam" value={{usernameParam}}>
+                                                <div class="input-group-append">
+                                                    <button type="submit" class="btn btn-primary btn-user btn-block">Add new friend</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-8">
+                        <div class="card">
+                            <div class="card-header pb-0">
+                                <div class="form-group">
+                                    <a href="/listFriends/seeFriends/{{user.username}}" class="card-link" > Check your friends</a>
+                                </div>
+                                <div class="card-actions float-right">
+                                </div>
+                                </h5>
+                            </div>
+                                            
+                            <div class="card-body">
+                                <table class="table table-striped" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Username</th>
+                                            <th>Message</th>
+                                            <th>Courses</th>
+                                        </tr>
+                                    </thead>
+                                    {{#each friends}}
+                                    <tbody>
+                                        <tr>
+                                            <td>{{name}}</td>
+                                            <td>{{username}}</td>
+                                            <td>
+                                                <a href="/chat/chat/{{username}}/{{../user.username}}" class="card-link" > Send Message</a>
+                                            </td>
+                                            <td>
+                                                <a href="/seeCourses/{{username}}" class="card-link" > See courses</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    {{/each}}
+                                </table>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Your Website 2021</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="/users/logout">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+.fa-plus-circle {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.imagepicker {
+    display: none;
+    visibility: none;
+}
+
+.avatar {
+    width: 100px;
+}
+
+.small-avatar {
+    width: 50px;
+}
+
+.sidebar-divider{
+    color: white;
+}
+
+.create-evaluation{
+    padding-bottom: 25px;
+}
+
+.completed-evaluations {
+    padding-bottom: 25px;
+}
+
+.scroll {
+    height:450px;
+    overflow-y: scroll;
+  }
+
+.navbar-search {
+    padding-bottom: 25px;
+}
+
+.description {
+    padding-top: 15px;
+}
+
+.register {
+    margin-left: 30%;
+    margin-top: 50%;
+}

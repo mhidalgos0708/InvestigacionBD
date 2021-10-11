@@ -1,0 +1,159 @@
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        {{> sidebar}}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                {{> topbar}}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-1 text-gray-800 create-evaluation">Create evaluation</h1>
+                    <h5 class="mb-4">General information</h5>
+                    <p>Click on the save button until you add questions to the evaluation</p>
+                    
+                    <form class="user" action="/teachers/save-evaluation/{{user.username}}" method="POST">
+                        <div class="col-md-4 mx-auto">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" name="name" placeholder="Evaluation name"
+                                value={{name}}>
+                            </div>      
+                        </div>
+                        <div class="col-md-4 mx-auto">
+                            <div class="form-group row">
+                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                    <label class="form-control-user">Start date</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="date" class="form-control form-control-user" id="datepicker"
+                                        name="startdate" min="1950-01-01" max="2021-12-31">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mx-auto">
+                            <div class="form-group row">
+                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                    <label class="form-control-user">End date</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="date" class="form-control form-control-user" id="second-datepicker"
+                                        name="enddate" min="1950-01-01" max="2021-12-31">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mx-auto">
+                            <div class="form-group row">
+                                <button type="submit" class="btn btn-primary btn-user btn-block">Save evaluation</button>
+                            </div>
+                        </div>
+                    </form>
+                        
+                    <h5 class="mb-4">Questions</h5>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Border Left Utilities -->
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Add new question</h1>
+                                    </div>
+                                    <form class="user" action="/teachers/add-question" method="POST">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" name="statement" placeholder="Statement of the question"
+                                                value="{{statement}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" name="option1" placeholder="Option 1"
+                                                value="{{option1}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" name="option2" placeholder="Option 2"
+                                                value="{{option2}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" name="option3" placeholder="Option 3"
+                                                value="{{option3}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" name="option4" placeholder="Option 4"
+                                                value="{{option4}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" name="correctoption" placeholder="Correct option"
+                                                value="{{correctoption}}">
+                                        </div>
+                                        <div class="mt-3">
+                                            <button type="submit" class="btn btn-primary btn-user btn-block">Add question</button>
+                                        </div>
+                                        <hr>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Border Bottom Utilities -->
+                        <div class="col-lg-6">
+                            {{#each questions}}
+                                <div class="card mb-4 py-3 border-bottom-success">
+                                    <div class="card-body">
+                                        <h5 class="mb-4">{{statement}}</h5>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioDisabled">
+                                            <label class="form-check-label" for="flexRadioDisabled">
+                                                {{option1}}
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled">
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled">
+                                                {{option2}}
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled">
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled">
+                                                {{option3}}
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled">
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled">
+                                                {{option4}}
+                                            </label>
+                                        </div>
+                                        <hr>
+                                        <h5 class="mb-4">{{correctoption}}</h5>
+                                        <form action="/teachers/delete-question/{{_id}}?_method=DELETE" method="POST">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button class="btn btn-danger w-100 btn-sm" type="submit">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {{/each}}
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            {{> footer}}
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->

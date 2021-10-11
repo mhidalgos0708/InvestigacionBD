@@ -1,0 +1,89 @@
+<!-- Page Wrapper -->
+<div id="wrapper" class="wrapper">
+
+    {{> sidebar}}
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            {{> topbar}}
+
+            <div class="container-fluid">
+                <div class="col-md-8 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-lg-12 mt-3">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h1 class="h4 text-gray-900 mb-4">Editing profile</h1>
+                                        </div>
+                                        <form class="user" action="/users/edit-profile/{{user._id}}?_method=PUT" method="POST">
+                                            <input type="hidden" name="_method" value="PUT">
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <input type="file" class="imagepicker" id="control-avatar" onchange="getImage(this.value);" 
+                                                        accept="image/jpg, image/jpeg, image/png" name="avatar">
+                                                    <img id="display-image" class="rounded-circle mx-auto d-block m-4 avatar" />
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label class="form-control-user">Select a photo / avatar</label>
+                                                    <label for="control-avatar" class="form-control-user"><i class="fas fa-plus-circle"></i></label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-user" name="name" placeholder="Full name"
+                                                    value="{{user.name}}">
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-4 mb-3 mb-sm-0">
+                                                    <label class="form-control-user">Date of birth</label>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <input type="date" class="form-control form-control-user"
+                                                        name="dateofbirth" min="1950-01-01" max="2021-12-31" value="{{user.dateofbirth}}">
+                                                </div>
+                                            </div>
+                                                <div class="form-group">
+                                                <input type="text" class="form-control form-control-user" name="username" placeholder="Username"
+                                                    value={{user.username}}>
+                                                </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <input type="password" class="form-control form-control-user" name="password" placeholder="Password">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="password" class="form-control form-control-user" name="confirm_password" placeholder="Confirm Password">
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <button type="submit" class="btn btn-primary btn-user btn-block">Edit profile</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- End of Main Content -->
+
+        {{> footer}}
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
