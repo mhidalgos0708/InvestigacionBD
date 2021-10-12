@@ -1302,6 +1302,7 @@ ol {
 
 .shop__sidebar__color {
 	padding-top: 15px;
+	padding-left: 15px;
 }
 
 .shop__sidebar__color label {
@@ -1315,51 +1316,51 @@ ol {
 	cursor: pointer;
 }
 
-.shop__sidebar__color label.c-1 {
+.shop__sidebar__color label.black {
 	background: #0b090c;
 }
 
-.shop__sidebar__color label.c-2 {
+.shop__sidebar__color label.blue {
 	background: #20315f;
 }
 
-.shop__sidebar__color label.c-3 {
+.shop__sidebar__color label.orange {
 	background: #FF5733;
 }
 
-.shop__sidebar__color label.c-4 {
+.shop__sidebar__color label.beige {
 	background: #E1C699;
 }
 
-.shop__sidebar__color label.c-5 {
+.shop__sidebar__color label.grey {
 	background: #424242;
 }
 
-.shop__sidebar__color label.c-6 {
+.shop__sidebar__color label.pink {
 	background: #e8bac4;
 }
 
-.shop__sidebar__color label.c-7 {
+.shop__sidebar__color label.purple {
 	background: #d6c1d7;
 }
 
-.shop__sidebar__color label.c-8 {
+.shop__sidebar__color label.red {
 	background: #ed1c24;
 }
 
-.shop__sidebar__color label.c-9 {
+.shop__sidebar__color label.white {
 	background: #ffffff;
 }
 
-.shop__sidebar__color label.c-10 {
+.shop__sidebar__color label.green {
 	background: #38C366;
 }
 
-.shop__sidebar__color label.c-11 {
+.shop__sidebar__color label.brown {
 	background: #873700;
 }
 
-.shop__sidebar__color label.c-12 {
+.shop__sidebar__color label.yellow {
 	background: #FFD500;
 }
 

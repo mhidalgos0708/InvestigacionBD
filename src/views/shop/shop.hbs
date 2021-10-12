@@ -102,9 +102,11 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__color">
                                             {{#each filters.color}}
-                                                <label class="{{this}}">
-                                                    <input type="radio">
-                                                </label>
+                                                <a href="/home/shop/colors/{{this}}">
+                                                    <label class="{{this}}">
+                                                        <input type="radio submit">
+                                                    </label>
+                                                </a>
                                             {{/each}}
                                         </div>
                                     </div>

@@ -62,4 +62,12 @@ router.get('/home/shop/tags/:tag', async (req, res) => {
     res.render('shop/shop', {filters, numberTotalResults, products});
 });
 
+router.get('/home/shop/colors/:color', async (req, res) => {
+    const filter = req.params.color;
+    const filters = await Filter.findOne({section: "shop"}).lean();
+    const numberTotalResults = await Product.find({color: filter}).sort({_id: 1}).count().lean();
+    const products = await Product.find({color: filter}).limit(12).sort({_id: 1}).lean();
+    res.render('shop/shop', {filters, numberTotalResults, products});
+});
+
 module.exports = router;
