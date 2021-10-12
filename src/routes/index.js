@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/index', (req, res) => {
+router.get('/home', (req, res) => {
     res.render('index');
 });
 

@@ -45,6 +45,7 @@ app.use((req, res, next) => {
 
 //Routes
 app.use(require('./routes/index'));
+app.use(require('./routes/shop'));
 app.use(require('./routes/users'));
 
 //Static Files
