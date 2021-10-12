@@ -86,9 +86,11 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__size">
                                             {{#each filters.size}}
-                                                <label for="{{this}}">{{this}}
-                                                    <input type="radio" id="{{this}}">
-                                                </label>
+                                                <a href="/home/shop/size/{{this}}">
+                                                    <label for="{{this}}">{{this}}
+                                                        <input type="radio submit" id="{{this}}">
+                                                    </label>
+                                                </a>    
                                             {{/each}}
                                         </div>
                                     </div>
@@ -128,17 +130,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="product__pagination">
-                                <a class="active" href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#">4</a>
-                                <a href="#">5</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="col-lg-9">
@@ -146,7 +137,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="shop__product__option__left">
-                                <p>Showing 1–12 of {{numberTotalResults}} results</p>
+                                <p>Showing {{numberTotalResults}} results</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">

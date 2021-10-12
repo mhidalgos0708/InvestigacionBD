@@ -70,4 +70,13 @@ router.get('/home/shop/colors/:color', async (req, res) => {
     res.render('shop/shop', {filters, numberTotalResults, products});
 });
 
+router.get('/home/shop/size/:size', async (req, res) => {
+    const filter = req.params.size;
+    console.log(filter);
+    const filters = await Filter.findOne({section: "shop"}).lean();
+    const numberTotalResults = await Product.find({size: filter}).sort({_id: 1}).count().lean();
+    const products = await Product.find({size: filter}).limit(12).sort({_id: 1}).lean();
+    res.render('shop/shop', {filters, numberTotalResults, products});
+});
+
 module.exports = router;
