@@ -58,4 +58,30 @@ router.get('/home/shop/add-to-chart/:code', async (req,res) => {
     res.redirect('/home/shop/shopping-cart');
 });
 
+
+router.get('/home/shop/remove-from-chart/:code', async (req,res) => {
+    const code = req.params.code;
+    const clientid = "118240738";
+
+    const uniqueshoppingcart = await ShoppingCart.findOne({id:clientid}).lean();
+    const products = uniqueshoppingcart.products;
+    const currentTotal = uniqueshoppingcart.total;
+    var productTotal = 0.0;
+    for (var i = 0; i < products.length; i++) {
+        if (products[i].code == code) {
+            productTotal = products[i].total;
+            products.splice(i, 1);
+            console.log(productTotal);
+            break;
+        }
+    }
+    const newTotal = currentTotal - productTotal;
+    await ShoppingCart.updateOne({ clientid: clientid }, {
+        $set: {
+            products: products,
+            total: newTotal
+        }});
+
+    res.redirect('/home/shop/shopping-cart');
+});
 module.exports = router;
