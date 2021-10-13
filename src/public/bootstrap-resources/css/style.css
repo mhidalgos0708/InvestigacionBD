@@ -1300,6 +1300,99 @@ ol {
 	visibility: hidden;
 }
 
+.card-size {
+	color: #111111;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    border: 1px solid #e5e5e5;
+    padding: 6px 25px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+	margin-top: 10px;
+}
+
+.shop__card__color {
+	padding-top: 5px;
+	padding-left: 50%;
+	margin-top: 10px;
+}
+
+.shop__card__color label {
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	position: relative;
+	margin-right: 10px;
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+.shop__card__color label.black {
+	background: #0b090c;
+}
+
+.shop__card__color label.blue {
+	background: #20315f;
+}
+
+.shop__card__color label.orange {
+	background: #FF5733;
+}
+
+.shop__card__color label.beige {
+	background: #E1C699;
+}
+
+.shop__card__color label.grey {
+	background: #424242;
+}
+
+.shop__card__color label.pink {
+	background: #e8bac4;
+}
+
+.shop__card__color label.purple {
+	background: #d6c1d7;
+}
+
+.shop__card__color label.red {
+	background: #ed1c24;
+}
+
+.shop__card__color label.white {
+	background: #ffffff;
+}
+
+.shop__card__color label.green {
+	background: #38C366;
+}
+
+.shop__card__color label.brown {
+	background: #873700;
+}
+
+.shop__card__color label.yellow {
+	background: #FFD500;
+}
+
+.shop__card__color label:after {
+	position: absolute;
+	left: -3px;
+	top: -3px;
+	height: 26px;
+	width: 26px;
+	border: 1px solid #e5e5e5;
+	content: "";
+	border-radius: 50%;
+}
+
+.shop__card__color label input {
+	position: absolute;
+	visibility: hidden;
+}
+
 .shop__sidebar__color {
 	padding-top: 15px;
 	padding-left: 15px;
