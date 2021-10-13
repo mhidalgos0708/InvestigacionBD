@@ -15,4 +15,7 @@ const mongoose = require('mongoose');
 /*****  mongoose.connect('mongodb+srv://<dbuser>:<password>@cluster0.8ee8w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'); *****/
 
 /*Marianna's MongoDB Atlas connection*/
-mongoose.connect('mongodb+srv://admin:admin@cluster0.8ee8w.mongodb.net/online_clothing_store');
+ mongoose.connect('mongodb+srv://admin:admin@cluster0.8ee8w.mongodb.net/online_clothing_store');
+
+/* Silvia's MongoDB Atlas connection*/
+//mongoose.connect('mongodb+srv://admin:admin@dbtecdigitalito.wv1yu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
