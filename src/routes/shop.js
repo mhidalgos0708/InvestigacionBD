@@ -49,10 +49,18 @@ router.get('/home/shop/price/:price', async (req, res) => {
     }
 });
 
-router.get('/home/shop/tags/:tag', async (req, res) => {
-    const filter = req.params.tag;
+router.get('/home/shop/tags/clothing/:clothing', async (req, res) => {
+    const filter = req.params.clothing;
     const filters = await Filter.findOne({section: "shop"}).lean();
-    const products = await Product.find({tags: filter}).sort({_id: 1}).lean();
+    const products = await Product.find({tagClothing: filter}).sort({_id: 1}).lean();
+    const totalNumberResults = products.length;
+    res.render('shop/shop', {filters, totalNumberResults, products});
+});
+
+router.get('/home/shop/tags/type/:type', async (req, res) => {
+    const filter = req.params.type;
+    const filters = await Filter.findOne({section: "shop"}).lean();
+    const products = await Product.find({tagType: filter}).sort({_id: 1}).lean();
     const totalNumberResults = products.length;
     res.render('shop/shop', {filters, totalNumberResults, products});
 });

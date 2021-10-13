@@ -121,8 +121,11 @@
                                 <div id="collapseSix" class="collapse" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="shop__sidebar__tags">
-                                            {{#each filters.tags}}
-                                                <a href="/home/shop/tags/{{this}}">{{this}}</a>
+                                            {{#each filters.tagType}}
+                                                <a href="/home/shop/tags/type/{{this}}">{{this}}</a>
+                                            {{/each}}
+                                            {{#each filters.tagClothing}}
+                                                <a href="/home/shop/tags/clothing/{{this}}">{{this}}</a>
                                             {{/each}}
                                         </div>
                                     </div>
@@ -138,15 +141,6 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="shop__product__option__left">
                                 <p>Showing {{totalNumberResults}} results</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="shop__product__option__right">
-                                <p>Sort by Price:</p>
-                                <select>
-                                    <option id="low" name="low">Low to High</option>
-                                    <option id="high" name="high">High to Low</option>
-                                </select>
                             </div>
                         </div>
                     </div>
