@@ -84,4 +84,80 @@ router.get('/home/shop/remove-from-chart/:code', async (req,res) => {
 
     res.redirect('/home/shop/shopping-cart');
 });
+
+router.get('/home/shop/increase-quantity/:code', async (req,res) => {
+    const code = req.params.code;
+    const clientid = "118240738";
+
+    const uniqueshoppingcart = await ShoppingCart.findOne({id:clientid}).lean();
+    const products = uniqueshoppingcart.products;
+    const totalShop = uniqueshoppingcart.total;
+    var productTotal;
+    var productPrice;
+    var productQuantity;
+
+    for (var i = 0; i < products.length; i++) {
+        if (products[i].code == code) {
+            productQuantity = products[i].quantity;
+            products[i].quantity = productQuantity +1;
+            productPrice = products[i].price;
+            productTotal = products[i].total;
+            products[i].total = productTotal + productPrice;
+            break;
+        }
+    }
+    
+    const newTotalShop = totalShop + productPrice;
+    await ShoppingCart.updateOne({ clientid: clientid }, {
+        $set: {
+            products: products,
+            total: newTotalShop
+        }});
+    res.redirect('/home/shop/shopping-cart');
+
+});
+
+router.get('/home/shop/decrease-quantity/:code', async (req,res) => {
+    const code = req.params.code;
+    const clientid = "118240738";
+
+    const uniqueshoppingcart = await ShoppingCart.findOne({id:clientid}).lean();
+    const products = uniqueshoppingcart.products;
+    const totalShop = uniqueshoppingcart.total;
+    var productTotal;
+    var productPrice;
+    var productQuantity;
+    var valid = false;
+
+    for (var i = 0; i < products.length; i++) {
+        if (products[i].code == code) {
+            productQuantity = products[i].quantity;
+            if(productQuantity > 1){
+                products[i].quantity = productQuantity -1;
+                productPrice = products[i].price;
+                productTotal = products[i].total;
+                products[i].total = productTotal - productPrice;
+                valid = true;
+                break;
+            }
+            else{
+                break;
+            }
+            
+        }
+    }
+    if(valid)
+    {
+        const newTotalShop = totalShop - productPrice;
+        await ShoppingCart.updateOne({ clientid: clientid }, {
+            $set: {
+                products: products,
+                total: newTotalShop
+            }});
+    }
+    
+
+    res.redirect('/home/shop/shopping-cart');
+
+});
 module.exports = router;
