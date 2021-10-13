@@ -12,7 +12,7 @@ router.get('/home/shop/shopping-cart', async (req, res) => {
     const uniqueshoppingcart = await ShoppingCart.findOne({id:clientid}).lean();
     const total = uniqueshoppingcart.total;
     const products = uniqueshoppingcart.products;
-    res.render('shoppingCart/shopping-cart',{products,total});
+    res.render('shoppingCart/shopping-cart',{products,total,clientid});
 });
 
 router.get('/home/shop/add-to-chart/:code', async (req,res) => {
@@ -155,9 +155,21 @@ router.get('/home/shop/decrease-quantity/:code', async (req,res) => {
                 total: newTotalShop
             }});
     }
-    
-
     res.redirect('/home/shop/shopping-cart');
+});
 
+router.get('/home/shop/checkout/:clientcode', async (req,res) => {
+    clientcode = req.params.clientcode;
+    const uniqueshoppingcart = await ShoppingCart.findOne({id:clientcode}).lean();
+    const products = uniqueshoppingcart.products;
+    const newTotal = 0;
+    const newProducts = [];
+    await ShoppingCart.updateOne({ clientid: clientcode }, {
+        $set: {
+            products: newProducts,
+            total: newTotal
+        }});
+
+    res.redirect('/home/shop');
 });
 module.exports = router;
