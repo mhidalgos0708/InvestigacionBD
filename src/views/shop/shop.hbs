@@ -6,7 +6,7 @@
                 <div class="breadcrumb__text">
                     <h4>Shop</h4>
                     <div class="breadcrumb__links">
-                        <a href="./index.html">Home</a>
+                        <a href="/home">Home</a>
                         <span>Shop</span>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
             <div class="col-lg-3">
                 <div class="shop__sidebar">
                     <div class="shop__sidebar__search">
-                        <form action="/home/shop/search">
+                        <form action="/shop/search">
                             <input type="text" name="search" placeholder="Search...">
                             <button type="submit"><span class="icon_search"></span></button>
                         </form>
@@ -39,7 +39,7 @@
                                         <div class="shop__sidebar__categories">
                                             <ul class="nice-scroll">
                                                 {{#each filters.category}}
-                                                    <li><a href="/home/shop/category/{{this}}" name="men">{{this}}</a></li>
+                                                    <li><a href="/shop/category/{{this}}" name="men">{{this}}</a></li>
                                                 {{/each}}
                                             </ul>
                                         </div>
@@ -55,7 +55,7 @@
                                         <div class="shop__sidebar__brand">
                                             <ul>
                                                 {{#each filters.brand}}
-                                                    <li><a href="/home/shop/brand/{{this}}">{{this}}</a></li>
+                                                    <li><a href="/shop/brand/{{this}}">{{this}}</a></li>
                                                 {{/each}}
                                             </ul>
                                         </div>
@@ -71,7 +71,7 @@
                                         <div class="shop__sidebar__price">
                                             <ul>
                                                 {{#each filters.price}}
-                                                    <li><a href="/home/shop/price/{{this}}">{{this}}</a></li>
+                                                    <li><a href="/shop/price/{{this}}">{{this}}</a></li>
                                                 {{/each}}
                                             </ul>
                                         </div>
@@ -86,7 +86,7 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__size">
                                             {{#each filters.size}}
-                                                <a href="/home/shop/size/{{this}}">
+                                                <a href="/shop/size/{{this}}">
                                                     <label for="{{this}}">{{this}}
                                                         <input type="radio submit" id="{{this}}">
                                                     </label>
@@ -104,7 +104,7 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__color">
                                             {{#each filters.color}}
-                                                <a href="/home/shop/colors/{{this}}">
+                                                <a href="/shop/colors/{{this}}">
                                                     <label class="{{this}}">
                                                         <input type="radio submit">
                                                     </label>
@@ -122,10 +122,10 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__tags">
                                             {{#each filters.tagType}}
-                                                <a href="/home/shop/tags/type/{{this}}">{{this}}</a>
+                                                <a href="/shop/tags/type/{{this}}">{{this}}</a>
                                             {{/each}}
                                             {{#each filters.tagClothing}}
-                                                <a href="/home/shop/tags/clothing/{{this}}">{{this}}</a>
+                                                <a href="/shop/tags/clothing/{{this}}">{{this}}</a>
                                             {{/each}}
                                         </div>
                                     </div>
@@ -141,6 +141,11 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="shop__product__option__left">
                                 <p>Showing {{totalNumberResults}} results</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="shop__product__option__right">
+                                <a class="all-results" href="/shop">Show all results</a>
                             </div>
                         </div>
                     </div>

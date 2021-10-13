@@ -1568,6 +1568,20 @@ ol {
 	border-radius: 0;
 }
 
+.all-results { 
+	color: #111111;
+	font-size: 15px;
+	font-weight: 700;
+	cursor: pointer; 
+}
+
+.all-results:hover {
+    color: #111111;
+	font-size: 15px;
+	font-weight: 700;
+	cursor: pointer;
+}
+
 .product__pagination {
 	padding-top: 25px;
 	text-align: center;

@@ -3,14 +3,14 @@ const router = express.Router();
 const Product = require('../models/Product');
 const Filter = require('../models/Filter');
 
-router.get('/home/shop', async (req, res) => {
+router.get('/shop', async (req, res) => {
     const filters = await Filter.findOne({section: "shop"}).lean();
     const products = await Product.find().sort({_id: 1}).lean();
     const totalNumberResults = products.length;
     res.render('shop/shop', {filters, totalNumberResults, products});
 });
 
-router.get('/home/shop/category/:category', async (req, res) => {
+router.get('/shop/category/:category', async (req, res) => {
     const filter = req.params.category;
     const filters = await Filter.findOne({section: "shop"}).lean();
     const products = await Product.find({category: filter}).sort({_id: 1}).lean();
@@ -18,7 +18,7 @@ router.get('/home/shop/category/:category', async (req, res) => {
     res.render('shop/shop', {filters, totalNumberResults, products});
 });
 
-router.get('/home/shop/brand/:brand', async (req, res) => {
+router.get('/shop/brand/:brand', async (req, res) => {
     const filter = req.params.brand;
     const filters = await Filter.findOne({section: "shop"}).lean();
     const products = await Product.find({brand: filter}).sort({_id: 1}).lean();
@@ -26,7 +26,7 @@ router.get('/home/shop/brand/:brand', async (req, res) => {
     res.render('shop/shop', {filters, totalNumberResults, products});
 });
 
-router.get('/home/shop/price/:price', async (req, res) => {
+router.get('/shop/price/:price', async (req, res) => {
     const filter = req.params.price;
     const filters = await Filter.findOne({section: "shop"}).lean();
     if(filter == "$250+") {
@@ -49,7 +49,7 @@ router.get('/home/shop/price/:price', async (req, res) => {
     }
 });
 
-router.get('/home/shop/tags/clothing/:clothing', async (req, res) => {
+router.get('/shop/tags/clothing/:clothing', async (req, res) => {
     const filter = req.params.clothing;
     const filters = await Filter.findOne({section: "shop"}).lean();
     const products = await Product.find({tagClothing: filter}).sort({_id: 1}).lean();
@@ -57,7 +57,7 @@ router.get('/home/shop/tags/clothing/:clothing', async (req, res) => {
     res.render('shop/shop', {filters, totalNumberResults, products});
 });
 
-router.get('/home/shop/tags/type/:type', async (req, res) => {
+router.get('/shop/tags/type/:type', async (req, res) => {
     const filter = req.params.type;
     const filters = await Filter.findOne({section: "shop"}).lean();
     const products = await Product.find({tagType: filter}).sort({_id: 1}).lean();
@@ -65,7 +65,7 @@ router.get('/home/shop/tags/type/:type', async (req, res) => {
     res.render('shop/shop', {filters, totalNumberResults, products});
 });
 
-router.get('/home/shop/colors/:color', async (req, res) => {
+router.get('/shop/colors/:color', async (req, res) => {
     const filter = req.params.color;
     const filters = await Filter.findOne({section: "shop"}).lean();
     const products = await Product.find({color: filter}).sort({_id: 1}).lean();
@@ -73,7 +73,7 @@ router.get('/home/shop/colors/:color', async (req, res) => {
     res.render('shop/shop', {filters, totalNumberResults, products});
 });
 
-router.get('/home/shop/size/:size', async (req, res) => {
+router.get('/shop/size/:size', async (req, res) => {
     const filter = req.params.size;
     const filters = await Filter.findOne({section: "shop"}).lean();
     const products = await Product.find({size: filter}).sort({_id: 1}).lean();
@@ -81,7 +81,7 @@ router.get('/home/shop/size/:size', async (req, res) => {
     res.render('shop/shop', {filters, totalNumberResults, products});
 });
 
-router.get('/home/shop/search', async (req, res) => {
+router.get('/shop/search', async (req, res) => {
     const { search } = req.query;
     const filters = await Filter.findOne({section: "shop"}).lean();
     const products = await Product.find({name: {$regex: search, $options: "$i"}}).sort({_id: 1}).lean();
