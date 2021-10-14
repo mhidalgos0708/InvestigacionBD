@@ -48,11 +48,11 @@
                                     <td class="cart__price">
                                         <div>
                                             <form action="/home/shop/decrease-quantity/{{code}}" method="GET">
-                                                <button id="minus">-</button>
+                                                <button style="width:80px;height:35px" id="minus" class="card-size">-</button>
                                             </form>
                                             <input type="text" style="width:80px;height:35px" name="quantity" class="form-control input-number" value={{quantity}} min="1">
                                             <form action="/home/shop/increase-quantity/{{code}}" method="GET">
-                                                <button id="plus">+</button>
+                                                <button style="width:80px;height:35px" id="plus" class="card-size">+</button>
                                             </form>
                                         </div>
                                     </td>

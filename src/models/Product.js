@@ -6,7 +6,7 @@ const ProductSchema = new Schema ({
     name: {type: String, required: true},
     description: {type: String, required: true},
     brand: {type: String, required: true},
-    code: {type: String},
+    code: {type: String, required: true},
     category: {type: String, required: true},
     tagType: {type: String, required: true},
     tagClothing: {type: String, required: true},

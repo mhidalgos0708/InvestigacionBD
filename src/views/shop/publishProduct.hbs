@@ -1,115 +1,116 @@
-<div class="container">
-    <div class="card o-hidden border-0 shadow-lg my-5">
-        <div class="card-body p-0">
-            <div class="row">
-                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                <div class="col-lg-7">
-                    <div class="p-5">
-                        <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Publish Product</h1>
+<section class="shop spad">
+    <div class="container">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Publish Product</h1>
+                            </div>
+                            <form class="product" action="/shop/publishProduct" method="POST">
+                                <div class="form-group row">
+                                    <div class="col-sm-8 mb-3 mb-sm-0">
+                                        <input type="file" class="imagepicker" id="control-photo" onchange="getImage(this.value);" 
+                                            accept="image/jpg, image/jpeg, image/png" name="photo">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <label class="form-control-product">Select a photo</label>
+                                        <label for="control-photo" class="form-control-product"><i class="fas fa-plus-circle"></i></label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-product" name="name" placeholder="Product name"
+                                        value={{name}}>
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="description" class="form-control" placeholder="Description"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-product" name="code" placeholder="Code"
+                                        value={{code}}>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="number" class="form-control form-control-user" name="price" placeholder="Price"
+                                            value={{price}}>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control form-control-user" name="stock" placeholder="Stock"
+                                            value={{stock}}>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <select id="category" name="category">
+                                        {{#each filters}}
+                                            {{#each category}}
+                                                <option>{{this}}</option>
+                                            {{/each}}
+                                        {{/each}}
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select id="brand" name="brand">
+                                        {{#each filters}}
+                                            {{#each brand}}
+                                                <option>{{this}}</option>
+                                            {{/each}}
+                                        {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <select id="tagType" name="tagType">
+                                        {{#each filters}}
+                                            {{#each tagType}}
+                                                <option>{{this}}</option>
+                                            {{/each}}
+                                        {{/each}}
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select id="tagClothing" name="tagClothing">
+                                        {{#each filters}}
+                                            {{#each tagClothing}}
+                                                <option>{{this}}</option>
+                                            {{/each}}
+                                        {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <select id="size" name="size">
+                                        {{#each filters}}
+                                            {{#each size}}
+                                                <option>{{this}}</option>
+                                            {{/each}}
+                                        {{/each}}
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select id="color" name="color">
+                                        {{#each filters}}
+                                            {{#each color}}
+                                                <option>{{this}}</option>
+                                            {{/each}}
+                                        {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <button type="submit" class="btn btn-primary btn-product btn-block"
+                                    >Publish</button>
+                                </div>
+                                <hr>
+                            </form>
                         </div>
-                        <form class="product" action="/shop/publishProduct" method="POST">
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="file" class="imagepicker" id="control-photo" onchange="getImage(this.value);" 
-                                        accept="image/jpg, image/jpeg, image/png" name="photo">
-                                    <img id="display-image" class="rounded-circle mx-auto d-block m-4 photo" />
-                                </div>
-                                <div class="col-sm-6">
-                                    <label class="form-control-product">Select a photo</label>
-                                    <label for="control-photo" class="form-control-product"><i class="fas fa-plus-circle"></i></label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-product" name="name" placeholder="Product name"
-                                    value={{name}}>
-                            </div>
-                            <div class="form-group">
-                                <textarea name="description" class="form-control" placeholder="Description"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-product" code="code" placeholder="Code"
-                                    value={{code}}>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="number" class="form-control form-control-user" name="price" placeholder="Price"
-                                        value={{price}}>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="number" class="form-control form-control-user" name="stock" placeholder="Stock"
-                                        value={{stock}}>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <select id="category" name="category">
-                                    {{#each filters}}
-                                        {{#each category}}
-                                            <option>{{this}}</option>
-                                        {{/each}}
-                                    {{/each}}
-                                    </select>
-                                </div>
-                                <div class="col-sm-6">
-                                    <select id="brand" name="brand">
-                                    {{#each filters}}
-                                        {{#each brand}}
-                                            <option>{{this}}</option>
-                                        {{/each}}
-                                    {{/each}}
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <select id="tagType" name="tagType">
-                                    {{#each filters}}
-                                        {{#each tagType}}
-                                            <option>{{this}}</option>
-                                        {{/each}}
-                                    {{/each}}
-                                    </select>
-                                </div>
-                                <div class="col-sm-6">
-                                    <select id="tagClothing" name="tagClothing">
-                                    {{#each filters}}
-                                        {{#each tagClothing}}
-                                            <option>{{this}}</option>
-                                        {{/each}}
-                                    {{/each}}
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <select id="size" name="size">
-                                    {{#each filters}}
-                                        {{#each size}}
-                                            <option>{{this}}</option>
-                                        {{/each}}
-                                    {{/each}}
-                                    </select>
-                                </div>
-                                <div class="col-sm-6">
-                                    <select id="color" name="color">
-                                    {{#each filters}}
-                                        {{#each color}}
-                                            <option>{{this}}</option>
-                                        {{/each}}
-                                    {{/each}}
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mt-3">
-                                <button type="submit" class="btn btn-primary btn-product btn-block"
-                                >Publish</button>
-                            </div>
-                            <hr>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>

@@ -97,6 +97,7 @@ router.get('/shop/publishProduct', async (req, res) => {
 });
 
 router.post('/shop/publishProduct', async (req, res) => {
+    const filters = await Filter.find({section: "shop"}).lean();
     const {name, description, brand, code, category, tagType, tagClothing, price, stock, photo, size, color} = req.body;
     const errors = [];
     if(name=='') {
@@ -105,7 +106,7 @@ router.post('/shop/publishProduct', async (req, res) => {
     if(description=='') {
         errors.push({text: 'Please enter the description'});
     }
-    if(!code=='') {
+    if(code=='') {
         errors.push({text: 'Please enter the product code'});
     }
     if(price==0) {
@@ -121,7 +122,8 @@ router.post('/shop/publishProduct', async (req, res) => {
             description,
             code,
             price,
-            stock
+            stock,
+            filters
         });
     } else {
         const product = new Product( { name, description, brand, code, category, tagType, tagClothing,

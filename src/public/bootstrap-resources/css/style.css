@@ -137,6 +137,10 @@ ol {
 	background-position: top center;
 }
 
+.bg-register-image {
+	background:url('/img/add_productImage.jpg');
+}
+
 .spad {
 	padding-top: 100px;
 	padding-bottom: 100px;
