@@ -37,23 +37,29 @@ router.get('/home/shop/add-to-chart/:code', async (req,res) => {
             repetido = true;
         }
     });
+    var validStock = true;
     if(!repetido){
         const product = await Product.findOne({code: code}).lean();
-    
+        if(product.stock < 1)
+        {
+            validStock = false;
+        }
         var quantity = 1;
         const name = product.name;
         const price = product.price;
         const total = product.price * quantity;
         const newProductCart = new ProductShoppingCart({code, name, price, quantity, total});
+        if(validStock){
+            products.push(newProductCart);
+            quantity = shoppingcart.total + total;
 
-        products.push(newProductCart);
-        quantity = shoppingcart.total + total;
-
-        await ShoppingCart.updateOne({ clientid: clientid }, {
-            $set: {
-                products: products,
-                total: quantity
-            }});
+            await ShoppingCart.updateOne({ clientid: clientid }, {
+                $set: {
+                    products: products,
+                    total: quantity
+                }});
+        }
+        
     }    
     res.redirect('/home/shop/shopping-cart');
 });
@@ -95,10 +101,17 @@ router.get('/home/shop/increase-quantity/:code', async (req,res) => {
     var productTotal;
     var productPrice;
     var productQuantity;
+    var productStock;
+    var valid = false;
 
     for (var i = 0; i < products.length; i++) {
         if (products[i].code == code) {
             productQuantity = products[i].quantity;
+            const product = await Product.findOne({code:code}).lean();
+            if(product.stock >= productQuantity + 1)
+            {
+                valid = true;
+            }
             products[i].quantity = productQuantity +1;
             productPrice = products[i].price;
             productTotal = products[i].total;
@@ -108,11 +121,14 @@ router.get('/home/shop/increase-quantity/:code', async (req,res) => {
     }
     
     const newTotalShop = totalShop + productPrice;
-    await ShoppingCart.updateOne({ clientid: clientid }, {
-        $set: {
-            products: products,
-            total: newTotalShop
-        }});
+    if(valid)
+    {
+        await ShoppingCart.updateOne({ clientid: clientid }, {
+            $set: {
+                products: products,
+                total: newTotalShop
+            }});
+    }
     res.redirect('/home/shop/shopping-cart');
 
 });
@@ -162,6 +178,19 @@ router.get('/home/shop/checkout/:clientcode', async (req,res) => {
     clientcode = req.params.clientcode;
     const uniqueshoppingcart = await ShoppingCart.findOne({id:clientcode}).lean();
     const products = uniqueshoppingcart.products;
+    for (var i = 0; i < products.length; i++) {
+        const productCode = products[i].code;
+        console.log(productCode);
+        const product = await Product.findOne({code:productCode}).lean();
+        var productStock = product.stock;
+        var productQuantityCart = products[i].quantity;
+        productNewStock = productStock - productQuantityCart;
+        await Product.updateOne({ code: productCode}, {
+            $set: {
+                stock: productNewStock
+            }});
+        console.log(productNewStock);
+    }
     const newTotal = 0;
     const newProducts = [];
     await ShoppingCart.updateOne({ clientid: clientcode }, {
