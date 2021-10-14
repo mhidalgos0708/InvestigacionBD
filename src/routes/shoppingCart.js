@@ -199,6 +199,6 @@ router.get('/home/shop/checkout/:clientcode', async (req,res) => {
             total: newTotal
         }});
 
-    res.redirect('/home/shop');
+    res.redirect('/shop');
 });
 module.exports = router;
