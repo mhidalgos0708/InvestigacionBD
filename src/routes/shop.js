@@ -91,4 +91,46 @@ router.get('/shop/search', async (req, res) => {
     res.render('shop/shop', {filters, totalNumberResults, products});
 });
 
+router.get('/shop/publishProduct', async (req, res) => {
+    const filters = await Filter.find({section: "shop"}).lean();
+    res.render('shop/publishProduct', {filters});
+});
+
+router.post('/shop/publishProduct', async (req, res) => {
+    const {name, description, brand, code, category, tagType, tagClothing, price, stock, photo, size, color} = req.body;
+    const errors = [];
+    if(name=='') {
+        errors.push({text: 'Please enter the product name'});
+    }
+    if(description=='') {
+        errors.push({text: 'Please enter the description'});
+    }
+    if(!code=='') {
+        errors.push({text: 'Please enter the product code'});
+    }
+    if(price==0) {
+        errors.push({text: 'Please enter the price'});
+    }
+    if(stock==0) {
+        errors.push({text: 'Please enter the stock available'});
+    }
+    if(errors.length > 0) {
+        res.render('shop/publishProduct', {
+            errors,
+            name,
+            description,
+            code,
+            price,
+            stock
+        });
+    } else {
+        const product = new Product( { name, description, brand, code, category, tagType, tagClothing,
+            price, stock, photo, size, color } );
+        console.log(product);
+        await product.save();
+        req.flash('success_msg', 'Added product!');
+        res.redirect('/shop');
+    }
+});
+
 module.exports = router;
